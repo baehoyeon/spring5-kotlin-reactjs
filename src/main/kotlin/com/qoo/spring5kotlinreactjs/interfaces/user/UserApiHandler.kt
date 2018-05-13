@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.ServerResponse.ok
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
@@ -14,10 +15,9 @@ class UserApiHandler(val userRepository: UserRepository) {
 
     fun handleGetUserList(request: ServerRequest): Mono<ServerResponse> =
             ok().json()
-                    .body(userRepository.list(), User::class.java)
+                    .body(Flux.fromIterable(userRepository.findAll()), User::class.java)
 
     fun handleGetById(request: ServerRequest): Mono<ServerResponse> =
             ok().json()
-                    .body(userRepository.getBy(java.lang.Long.parseLong(request.pathVariable("id"))), User::class.java)
-                    .switchIfEmpty(ServerResponse.notFound().build())
+                    .body(Mono.justOrEmpty(userRepository.findById(request.pathVariable("id").toLong())), User::class.java)
 }
