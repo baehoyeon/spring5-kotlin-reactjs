@@ -13,7 +13,7 @@ spring.datasource.password=
 ### SCHEMA
 ```
 $ mysql -uroot -p
-CREATE SCHEMA `spring_kotlin_exampl` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA `spring_kotlin_example` DEFAULT CHARACTER SET utf8 ;
 
 ```
 
