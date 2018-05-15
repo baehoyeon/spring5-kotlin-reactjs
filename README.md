@@ -1,6 +1,8 @@
 # SpringBoot2(WebFlux) Kotlin Example
 This project based on kotlin, spring-boot2, mysql 
 
+Check [my blog](https://baehoyeon.github.io/) for more details.
+
 ## install
 ### mysql
 [mysql website](https://dev.mysql.com/downloads/mysql/)
