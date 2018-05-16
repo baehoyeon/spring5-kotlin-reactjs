@@ -2,6 +2,7 @@
 This project based on kotlin, spring-boot2, mysql 
 
 Check [my blog](https://baehoyeon.github.io/) for more details.
+This project is still incomplete.
 
 ## install
 ### mysql
