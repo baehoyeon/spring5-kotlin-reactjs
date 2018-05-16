@@ -31,11 +31,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
-            },
-            {
-                test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css?sourceMap&importLoaders=2&modules&localIdentName=[local]!postcss!sass?sourceMap')
-            },
+            }
         ]
     },
     plugins: [
