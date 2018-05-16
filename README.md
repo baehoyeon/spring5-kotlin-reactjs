@@ -12,6 +12,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/spring_kotlin_example
 spring.datasource.username=root
 spring.datasource.password=
 ```
+
 ### SCHEMA
 ```
 $ mysql -uroot -p
@@ -20,6 +21,7 @@ CREATE SCHEMA `spring_kotlin_example` DEFAULT CHARACTER SET utf8 ;
 ```
 
 ## Usage
+## 1. Server
 ### run
 ```
 ./gradlew bootRun
@@ -28,4 +30,23 @@ CREATE SCHEMA `spring_kotlin_example` DEFAULT CHARACTER SET utf8 ;
 ### open
 ```
 http://localhost:19036/
+```
+
+## 2. Client
+### install
+```
+$ cd src/main/frontend
+$ npm install
+```
+### run
+```
+$ cd src/main/frontend
+## watch
+$ npm run watch
+
+## build dev
+$ npm run dev-build
+
+## build prod
+$ npm run prod-build
 ```
