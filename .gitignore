@@ -3,6 +3,7 @@
 !gradle/wrapper/gradle-wrapper.jar
 /src/main/frontend/node_modules/
 /src/main/frontend/npm-debug**
+/src/main/resources/static/bundle**
 
 ### STS ###
 .apt_generated
