@@ -26,7 +26,7 @@ class AppRoutes {
         resources("/public/**", ClassPathResource("static/"))
         accept(TEXT_HTML).nest {
             GET("/hello", helloHandler::hello)
-            GET("/**", indexHandler::reactApp)
+            GET("/", indexHandler::reactApp)
         }
     }
 }
