@@ -12,6 +12,11 @@ let BowerWebpackPlugin = require('bower-webpack-plugin');
 let config = Object.assign({}, baseConfig, {
   entry: path.join(__dirname, '../src/index'),
   cache: false,
+  output: {
+    path: path.join(__dirname, '/../../resources/static'),
+    filename: 'app.js',
+    publicPath: defaultSettings.publicPath
+  },
   devtool: 'sourcemap',
   plugins: [
     new webpack.optimize.DedupePlugin(),
