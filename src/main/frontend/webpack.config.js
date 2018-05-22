@@ -1,40 +1,32 @@
-var webpack = require('webpack');
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+'use strict';
 
-module.exports = {
-    entry: "./src/app.js",
-    output: {
-        path: '../resources/static/',
-        filename: "bundle.js"
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.css$/,
-                loader: "style!css"
-            },
-            {
-                test: /\.jsx?$/,
-                include: [
-                    path.resolve(__dirname, "./src")
-                ],
-                loader: 'babel',
-                query: {
-                    presets: ['es2015', 'react']
-                }
-            },
-            {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-            },
-            {
-                test: /\.less$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
-            }
-        ]
-    },
-    plugins: [
-        new ExtractTextPlugin("[name].css")
-    ]
-};
+const path = require('path');
+const args = require('minimist')(process.argv.slice(2));
+
+// List of allowed environments
+const allowedEnvs = ['dev', 'dist', 'test'];
+
+// Set the correct environment
+let env;
+if (args._.length > 0 && args._.indexOf('start') !== -1) {
+  env = 'test';
+} else if (args.env) {
+  env = args.env;
+} else {
+  env = 'dev';
+}
+process.env.REACT_WEBPACK_ENV = env;
+
+/**
+ * Build the webpack configuration
+ * @param  {String} wantedEnv The wanted environment
+ * @return {Object} Webpack config
+ */
+function buildConfig(wantedEnv) {
+  let isValid = wantedEnv && wantedEnv.length > 0 && allowedEnvs.indexOf(wantedEnv) !== -1;
+  let validEnv = isValid ? wantedEnv : 'dev';
+  let config = require(path.join(__dirname, 'cfg/' + validEnv));
+  return config;
+}
+
+module.exports = buildConfig(env);
