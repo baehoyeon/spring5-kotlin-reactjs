@@ -23,10 +23,11 @@ class AppRoutes {
 
     @Bean
     fun appRouter(indexHandler: IndexHandler, helloHandler: HelloHandler) = router {
-        resources("/public/**", ClassPathResource("static/"))
+        resources("/**", ClassPathResource("static/"))
         accept(TEXT_HTML).nest {
             GET("/hello", helloHandler::hello)
             GET("/", indexHandler::reactApp)
+            GET("/contact", indexHandler::reactApp)
         }
     }
 }

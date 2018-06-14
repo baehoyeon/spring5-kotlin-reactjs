@@ -3,7 +3,7 @@ require('styles/App.css');
 
 import React from 'react';
 
-class AppComponent extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <div className="index">
@@ -13,7 +13,4 @@ class AppComponent extends React.Component {
   }
 }
 
-AppComponent.defaultProps = {
-};
-
-export default AppComponent;
+export default App;
