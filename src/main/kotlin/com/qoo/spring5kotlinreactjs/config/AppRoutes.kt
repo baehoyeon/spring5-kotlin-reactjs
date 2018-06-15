@@ -16,8 +16,11 @@ class AppRoutes {
     @Bean
     fun apiRouter(userApiHandler: UserApiHandler) = router {
         (accept(MediaType.APPLICATION_JSON_UTF8) and "/api").nest {
-            GET("/users", userApiHandler::handleGetUserList)
-            GET("/users/{id}", userApiHandler::handleGetById)
+            "/users".nest {
+                GET("/", userApiHandler::list)
+                GET("/{id}", userApiHandler::getById)
+                POST("/", userApiHandler::addUser)
+            }
         }
     }
 
