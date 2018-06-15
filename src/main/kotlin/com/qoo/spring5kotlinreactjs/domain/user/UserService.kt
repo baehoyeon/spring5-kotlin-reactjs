@@ -8,6 +8,7 @@ import reactor.core.publisher.Mono
 @Service
 class UserService(val jdbcAsyncUtils: JdbcAsyncUtils, val userRepository: UserRepository) {
     fun list(): Flux<User> = jdbcAsyncUtils.asyncFlux({ Flux.fromIterable(userRepository.findAll()) })
-    fun getById(id: Long): Mono<User> = jdbcAsyncUtils.asyncMono({Mono.justOrEmpty(userRepository.findById(id))})
+    fun getById(id: Long): Mono<User> = jdbcAsyncUtils.asyncMono({ Mono.justOrEmpty(userRepository.findById(id)) })
 //    fun getById(id: Long): Mono<User> = jdbcAsyncUtils.asyncMono(Callable<User> { userRepository.findById(id).orElse(null) })
+    fun add(user: User): Mono<User> = jdbcAsyncUtils.asyncMono({ Mono.justOrEmpty(userRepository.save(user)) })
 }
